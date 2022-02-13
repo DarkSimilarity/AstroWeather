@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="img/test.jpg" as="image">
+    <link rel="preload" href="img/Settings.jpg" as="image">
+    <title>AstroWeather</title>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="css/please-wait.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="overflow-hidden">
+    <div class="inner">
+        <div class="hidden -z-[1]"></div>
+
+
+        <div id="top" class="w-screen h-screen flex bg-test bg-cover z-10 absolute opacity-100">
+            <div class="rounded-2xl m-auto w-1/2 bg-white text-dark shadow-xl p-10 border-t-4 border-teal-700">
+                <h1 id="setText" class="text-2xl font-bold mb-6 text-teal-700">Welcome to AstroWeather</h1>
+                <div class="mb-4 max-w-96 w-2/3">
+                    <input type="text"
+                        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        id="place" placeholder="Location" />
+                    <span class="text-xs">US Zipcode, UK Postcode, Canada Postalcode, IP address, or city name.</span>
+                </div>
+                <div class="flex gap-4">
+                    <label class="inline-block mb-2 text-gray-700 font-bold">Speed Units:</label>
+                    <div class="form-check">
+                        <input
+                            class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                            type="radio" name="speed" id="kph" value="kph" checked>
+                        <label class="form-check-label inline-block text-gray-800" for="kph">
+                            kph
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input
+                            class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                            type="radio" name="speed" id="mph" value="mph">
+                        <label class="form-check-label inline-block text-gray-800" for="mph">
+                            mph
+                        </label>
+                    </div>
+                </div>
+                <div class="flex gap-4 mb-6">
+                    <label class="form-label inline-block mb-2 text-gray-700 font-bold">Temperature Units:</label>
+                    <div class="form-check">
+                        <input
+                            class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                            type="radio" name="temp" id="celsi" value="c" checked>
+                        <label class="form-check-label inline-block text-gray-800" for="celsi">
+                            Celsius
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input
+                            class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                            type="radio" name="temp" id="faren" value="f">
+                        <label class="form-check-label inline-block text-gray-800" for="faren">
+                            Fahrenheit
+                        </label>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <div>
+                        <button onClick="fetchWeather()"
+                            class="px-6 py-2 bg-dark text-light rounded-lg hover:bg-teal-700 transition ease-in">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="bg" class="bg"></div>
+
+        <div id="major" class="hidden">
+            <!-- Sidebar -->
+            <div class="bg-white w-96 h-screen absolute right-0 top-0 z-[1] shadow-xl">
+                <div class="bg-dark h-20 w-full text-center text-light flex">
+                    <div class="m-auto">
+                        <h1 class="font-bold text-2xl">AstroWeather</h1>
+                        <p>Made by DarkSimilarity</p>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <!-- Minibar -->
+                    <div class="px-4 flex justify-between">
+                        <div>
+                            <span class="text-sm">Max Temp</span>
+                            <h2 id="maxtemp" class="font-bold text-2xl">34 &#176;C</h2>
+                        </div>
+                        <div>
+                            <span class="text-sm">Min Temp</span>
+                            <h2 id="mintemp" class="font-bold text-2xl">34 &#176;C</h2>
+                        </div>
+                        <div>
+                            <span class="text-sm">Feels like</span>
+                            <h2 id="feelslike" class="font-bold text-2xl">34 &#176;C</h2>
+                        </div>
+                    </div>
+                    <div class="h-1 w-full bg-gray-400 my-4 opacity-30 rounded-full"></div>
+                </div>
+
+                <div class="max-h-[calc(100vh-204px)] p-4 pt-0 overflow-y-auto">
+                    <!-- Wind -->
+                    <div
+                        class="bg-gradient-to-tr to-[#8E2DE2]/70 from-[#4A00E0]/70 w-full rounded-xl p-4 text-white mb-4">
+                        <h3 class="font-bold text-base mb-4">WIND</h3>
+                        <div class="flex gap-4 mb-4 w-full">
+                            <div class="bg-violet-600 p-4 rounded-xl">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-wind">
+                                    <path
+                                        d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h1 id="windspeed" class="text-2xl">24.1 kph</h1>
+                                <span id="gustspeed" class="text-gray-200">Gusts 25.9 kph</span>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="flex gap-4 w-1/2">
+                                <div class="bg-violet-600 p-3 rounded-xl">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-thermometer">
+                                        <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+                                    </svg> </div>
+                                <div>
+                                    <h1 class="text-gray-200 text-sm">Wind Chill</h1>
+                                    <span id="windchill" class="font-bold">9 &#176;C</span>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 w-1/2">
+                                <div class="bg-violet-600 p-3 rounded-xl">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-cloud">
+                                        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                                    </svg> </div>
+                                <div>
+                                    <h1 class="text-gray-200 text-sm">Clouds</h1>
+                                    <span id="clouds" class="font-bold">3 %</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Precipitation -->
+                    <div
+                        class="bg-gradient-to-tr to-[#667db6]/80 from-[#0082c8]/70 w-full rounded-xl p-4 text-white mb-4">
+                        <h3 class="font-bold text-base mb-4">PRECIPITATION</h3>
+                        <div class="flex gap-4 mb-4 w-full">
+                            <div class="bg-sky-600 p-4 rounded-xl">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-droplet">
+                                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                                </svg>
+                            </div>
+                            <h1 id="precipitation" class="text-2xl inline-block my-auto">0 mm</h1>
+                        </div>
+                        <div class="flex mb-4">
+                            <div class="flex gap-4 w-1/2">
+                                <div class="bg-sky-600 p-3 rounded-xl">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-droplet">
+                                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h1 class="text-gray-200 text-sm">Humidity</h1>
+                                    <span id="humidity" class="font-bold">37 %</span>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 w-1/2">
+                                <div class="bg-sky-600 p-3 rounded-xl">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-umbrella">
+                                        <path d="M23 12a11.05 11.05 0 0 0-22 0zm-5 7a3 3 0 0 1-6 0v-7"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h1 class="text-gray-200 text-sm">Rain Chance</h1>
+                                    <span id="rainchance" class="font-bold">3 %</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 w-1/2">
+                            <div class="bg-sky-600 p-3 rounded-xl">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-thermometer">
+                                    <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h1 class="text-gray-200 text-sm">Dew Point</h1>
+                                <span id="dewpoint" class="font-bold">19 &#176;C</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Astrology -->
+                    <div class="bg-gradient-to-tr to-[#71B280] from-[#134E5E] w-full rounded-xl p-4 text-white mb-4">
+                        <h3 class="font-bold text-base mb-4">ASTROLOGY</h3>
+                        <div class="flex mb-4">
+                            <div class="gap-4 w-1/2">
+                                <div class="bg-teal-600 w-min p-3 rounded-xl mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-sunrise">
+                                        <path d="M17 18a5 5 0 0 0-10 0"></path>
+                                        <line x1="12" y1="2" x2="12" y2="9"></line>
+                                        <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line>
+                                        <line x1="1" y1="18" x2="3" y2="18"></line>
+                                        <line x1="21" y1="18" x2="23" y2="18"></line>
+                                        <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line>
+                                        <line x1="23" y1="22" x2="1" y2="22"></line>
+                                        <polyline points="8 6 12 2 16 6"></polyline>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h1 class="text-gray-200 text-sm">Sunrise</h1>
+                                    <span id="sunrise" class="font-bold text-2xl">05:45 AM</span>
+                                </div>
+                            </div>
+                            <div class="gap-4 w-1/2">
+                                <div class="bg-teal-600 p-3 w-min h-min rounded-xl mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-sunset">
+                                        <path d="M17 18a5 5 0 0 0-10 0"></path>
+                                        <line x1="12" y1="9" x2="12" y2="2"></line>
+                                        <line x1="4.22" y1="10.22" x2="5.64" y2="11.64"></line>
+                                        <line x1="1" y1="18" x2="3" y2="18"></line>
+                                        <line x1="21" y1="18" x2="23" y2="18"></line>
+                                        <line x1="18.36" y1="11.64" x2="19.78" y2="10.22"></line>
+                                        <line x1="23" y1="22" x2="1" y2="22"></line>
+                                        <polyline points="16 5 12 9 8 5"></polyline>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h1 class="text-gray-200 text-sm">Sunset</h1>
+                                    <span id="sunset" class="font-bold text-2xl">07:16 PM</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="gap-4 w-full">
+                            <div class="bg-teal-600 p-3 w-min h-min rounded-xl mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="feather feather-moon">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h1 class="text-gray-200 text-sm">Moon Phase</h1>
+                                <span id="moonphase" class="font-bold text-2xl">Waxing Crescent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Wrapper -->
+            <div class="w-[calc(100vw-385px)] h-screen relative text-slate-100">
+
+                <!-- Top buttons -->
+                <div class="absolute top-4 right-4 flex gap-4">
+                    <button onClick="set()" id="settings"
+                        class="rounded-full bg-white text-dark p-3 hover:bg-dark hover:text-light transition ease-in"><svg
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="feather feather-settings">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path
+                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                            </path>
+                        </svg></button>
+                </div>
+
+                <!-- Bottom Data -->
+                <div class="h-56 pt-[calc(100vh-224px)] p-6">
+                    <h2 id="condition" class="text-3xl">Sunny</h2>
+                    <h2 id="temp" class="text-8xl font-bold">32<span id="unit" class="font-sans font-bold">&#8451
+                            &#8457</span></h2>
+                    <div class="h-1 w-full bg-slate-50 my-4 opacity-40"></div>
+                    <div class="flex justify-between">
+                        <span id="location">Perth | Australia</span>
+                        <span id="time">31 January 2022 | 09:30 PM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/anime.min.js"></script>
+    <script src="js/please-wait.min.js"></script>
+    <script src="js/weather.js"></script>
+    <script>
+        var loading_screen = pleaseWait({
+            backgroundColor: '#1abc9c',
+            loadingHtml: '<div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>'
+        });
+
+        setTimeout(loading_screen.finish(), 2000)
+
+        //fetchWeather()
+    </script>
+</body>
+
+</html>
