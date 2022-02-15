@@ -169,9 +169,16 @@ async function fetchWeather() {
 
     // Fetch Data
     await fetch('https://api.weatherapi.com/v1/forecast.json?key=97a17acca844415cb5831439220402&q=' + local + '&days=1&aqi=yes&alerts=yes')
-        .then(res => res.json())
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+              } else {
+                removeLocal();
+                window.location.reload()
+              }
+        })
         .then((data) => window.storm = data)
-        .catch(err => {console.log(error)})
+
 
     var data = window.storm
     let forecast = data.forecast.forecastday[0]

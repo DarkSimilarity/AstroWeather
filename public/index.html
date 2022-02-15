@@ -13,56 +13,61 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="overflow-hidden">
+<body class="md:overflow-hidden">
     <div class="inner">
         <div class="hidden -z-[1]"></div>
 
 
         <div id="top" class="w-screen h-screen flex bg-test bg-cover z-10 absolute opacity-100">
-            <div class="rounded-2xl m-auto w-1/2 bg-white text-dark shadow-xl p-10 border-t-4 border-teal-700">
-                <h1 id="setText" class="text-2xl font-bold mb-6 text-teal-700">Welcome to AstroWeather</h1>
-                <div class="mb-4 max-w-96 w-2/3">
+            <div
+                class="rounded-2xl m-auto md:w-1/2 w-[80%] max-w-3xl bg-white text-dark shadow-xl md:p-10 p-6 border-t-4 border-teal-700">
+                <h1 id="setText" class="md:text-2xl text-xl font-bold mb-6 text-teal-700">Welcome to AstroWeather</h1>
+                <div class="mb-4 max-w-96 md:w-2/3 w-full">
                     <input type="text"
                         class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                         id="place" placeholder="Location" />
                     <span class="text-xs">US Zipcode, UK Postcode, Canada Postalcode, IP address, or city name.</span>
                 </div>
-                <div class="flex gap-4">
+                <div class="md:flex gap-4 md:text-base text-sm md:mb-0 mb-4">
                     <label class="inline-block mb-2 text-gray-700 font-bold">Speed Units:</label>
-                    <div class="form-check">
-                        <input
-                            class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                            type="radio" name="speed" id="kph" value="kph" checked>
-                        <label class="form-check-label inline-block text-gray-800" for="kph">
-                            kph
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input
-                            class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                            type="radio" name="speed" id="mph" value="mph">
-                        <label class="form-check-label inline-block text-gray-800" for="mph">
-                            mph
-                        </label>
+                    <div class="flex gap-4">
+                        <div class="form-check">
+                            <input
+                                class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                type="radio" name="speed" id="kph" value="kph" checked>
+                            <label class="form-check-label inline-block text-gray-800" for="kph">
+                                kph
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input
+                                class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                type="radio" name="speed" id="mph" value="mph">
+                            <label class="form-check-label inline-block text-gray-800" for="mph">
+                                mph
+                            </label>
+                        </div>
                     </div>
                 </div>
-                <div class="flex gap-4 mb-6">
+                <div class="md:flex gap-4 mb-6 md:text-base text-sm">
                     <label class="form-label inline-block mb-2 text-gray-700 font-bold">Temperature Units:</label>
-                    <div class="form-check">
-                        <input
-                            class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                            type="radio" name="temp" id="celsi" value="c" checked>
-                        <label class="form-check-label inline-block text-gray-800" for="celsi">
-                            Celsius
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input
-                            class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                            type="radio" name="temp" id="faren" value="f">
-                        <label class="form-check-label inline-block text-gray-800" for="faren">
-                            Fahrenheit
-                        </label>
+                    <div class="flex gap-4">
+                        <div class="form-check">
+                            <input
+                                class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                type="radio" name="temp" id="celsi" value="c" checked>
+                            <label class="form-check-label inline-block text-gray-800" for="celsi">
+                                Celsius
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input
+                                class="form-check-input appearance-none rounded-full h-4 w-4 border border-gray-300 bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                type="radio" name="temp" id="faren" value="f">
+                            <label class="form-check-label inline-block text-gray-800" for="faren">
+                                Fahrenheit
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="flex justify-center">
@@ -78,8 +83,9 @@
 
         <div id="major" class="hidden">
             <!-- Sidebar -->
-            <div class="bg-white w-96 h-screen absolute right-0 top-0 z-[1] shadow-xl">
-                <div class="bg-dark h-20 w-full text-center text-light flex">
+            <div
+                class="bg-white md:w-96 w-screen min-h-screen absolute right-0 top-0 z-[1] shadow-xl md:mt-0 mt-[calc(100vh-160px)] md:rounded-t-none rounded-t-xl">
+                <div class="bg-dark h-20 w-full text-center text-light flex md:block hidden">
                     <div class="m-auto">
                         <h1 class="font-bold text-2xl">AstroWeather</h1>
                         <p>Made by DarkSimilarity</p>
@@ -104,7 +110,7 @@
                     <div class="h-1 w-full bg-gray-400 my-4 opacity-30 rounded-full"></div>
                 </div>
 
-                <div class="max-h-[calc(100vh-204px)] p-4 pt-0 overflow-y-auto">
+                <div class="md:max-h-[calc(100vh-204px)] p-4 pt-0 overflow-y-auto">
                     <!-- Wind -->
                     <div
                         class="bg-gradient-to-tr to-[#8E2DE2]/70 from-[#4A00E0]/70 w-full rounded-xl p-4 text-white mb-4">
@@ -272,7 +278,7 @@
             </div>
 
             <!-- Main Wrapper -->
-            <div class="w-[calc(100vw-385px)] h-screen relative text-slate-100">
+            <div class="md:w-[calc(100vw-385px)] w-screen h-screen relative text-slate-100">
 
                 <!-- Top buttons -->
                 <div class="absolute top-4 right-4 flex gap-4">
@@ -289,14 +295,17 @@
                 </div>
 
                 <!-- Bottom Data -->
-                <div class="h-56 pt-[calc(100vh-224px)] p-6">
-                    <h2 id="condition" class="text-3xl">Sunny</h2>
-                    <h2 id="temp" class="text-8xl font-bold">32<span id="unit" class="font-sans font-bold">&#8451
-                            &#8457</span></h2>
-                    <div class="h-1 w-full bg-slate-50 my-4 opacity-40"></div>
-                    <div class="flex justify-between">
-                        <span id="location">Perth | Australia</span>
-                        <span id="time">31 January 2022 | 09:30 PM</span>
+                <div class="md:h-56 h-60 md:pt-[calc(100vh-224px)] pt-[calc(100vh-350px)]">
+                    <div class="p-6 pb-10 bg-dark md:rounded-t-none rounded-t-xl">
+                        <h2 id="condition" class="md:text-3xl text-xl">Sunny</h2>
+                        <h2 id="temp" class="md:text-8xl text-6xl font-bold">32<span id="unit"
+                                class="font-sans font-bold">&#8451
+                                &#8457</span></h2>
+                        <div class="h-1 w-full bg-slate-50 my-4 opacity-40"></div>
+                        <div class="flex justify-between md:text-base text-sm">
+                            <span id="location">Perth | Australia</span>
+                            <span id="time">31 January 2022 | 09:30 PM</span>
+                        </div>
                     </div>
                 </div>
             </div>
