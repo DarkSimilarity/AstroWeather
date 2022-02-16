@@ -65,7 +65,7 @@ function set() {
     addtop()
 
     // replace background image
-    doc.getElementById('top').classList.replace('bg-test', 'bg-settings')
+    doc.getElementById('top').classList.replace('bg-start', 'bg-settings')
     // replace welcome text with settings
     doc.getElementById('setText').innerText = 'Settings'
 }
