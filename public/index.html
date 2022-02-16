@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A portfolio project by DarkSimilarity. AstroWeather is a weather app making use of a global weather api to provide real-time data.">
+    <meta name="description"
+        content="A portfolio project by DarkSimilarity. AstroWeather is a weather app making use of a global weather api to provide real-time data.">
     <link rel="icon" href="img/cloudy.png" type="image/png">
     <link rel="apple-touch-icon" href="img/cloudy.png">
     <title>AstroWeather</title>
@@ -297,10 +298,12 @@
                 <!-- Bottom Data -->
                 <div class="md:h-56 h-60 md:pt-[calc(100vh-224px)] pt-[calc(100vh-350px)]">
                     <div class="p-6 pb-10 md:bg-transparent bg-dark md:rounded-t-none rounded-t-xl">
-                        <p id="condition" class="md:text-3xl text-xl">Sunny</p>
-                        <p id="temp" class="md:text-8xl text-6xl font-bold">32<span id="unit"
-                                class="font-sans font-bold">&#8451
-                                &#8457</span></p>
+                        <div class="max-w-lg">
+                            <p id="condition" class="md:text-3xl text-xl">Sunny</p>
+                            <p id="temp" class="md:text-8xl text-6xl font-bold">32<span id="unit"
+                                    class="font-sans font-bold">&#8451
+                                    &#8457</span></p>
+                        </div>
                         <div class="h-1 w-full bg-slate-50 my-4 opacity-40"></div>
                         <div class="flex gap-3 justify-between md:text-base text-sm">
                             <span class="flex-1" id="location">Perth | Australia</span>
@@ -316,13 +319,9 @@
     <script src="js/anime.min.js"></script>
     <script src="js/weather.js"></script>
     <script>
-        var loading_screen = pleaseWait({
-            logo: "img/cloudy.png",
-            backgroundColor: '#1abc9c',
-            loadingHtml: '<div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>'
-        });
+        var loading_screen = pleaseWait({logo: "img/cloudy.png", backgroundColor: '#1abc9c', loadingHtml: '<div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>'});
 
-        setTimeout(loading_screen.finish(), 1500)
+        setTimeout(loading_screen.finish(), 300)
 
         //fetchWeather()
     </script>
