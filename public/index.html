@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A portfolio project by DarkSimilarity. AstroWeather is a weather app making use of a global weather api to provide real-time data.">
     <link rel="icon" href="img/cloudy.png" type="image/png">
-    <link rel="preload" href="img/test.jpg" as="image">
-    <link rel="preload" href="img/Settings.jpg" as="image">
+    <link rel="apple-touch-icon" href="img/cloudy.png">
+    <link rel="preload" href="img/test.webp" as="image">
+    <link rel="preload" href="img/Settings.webp" as="image">
     <title>AstroWeather</title>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="css/please-wait.css">
@@ -19,7 +21,7 @@
         <div class="hidden -z-[1]"></div>
 
 
-        <div id="top" class="w-screen h-screen flex bg-test bg-cover z-10 absolute opacity-100">
+        <div id="top" class="w-screen h-screen flex bg-test bg-cover bg-bottom z-10 absolute opacity-100">
             <div
                 class="rounded-2xl m-auto md:w-1/2 w-[80%] max-w-3xl bg-white text-dark shadow-xl md:p-10 p-6 border-t-4 border-teal-700">
                 <h1 id="setText" class="md:text-2xl text-xl font-bold mb-6 text-teal-700">Welcome to AstroWeather</h1>
@@ -73,7 +75,7 @@
                 </div>
                 <div class="flex justify-center">
                     <div>
-                        <button onClick="fetchWeather()"
+                        <button onClick="fetchWeather()" aria-label="Continue"
                             class="px-6 py-2 bg-dark text-light rounded-lg hover:bg-teal-700 transition ease-in">Continue</button>
                     </div>
                 </div>
@@ -283,7 +285,7 @@
 
                 <!-- Top buttons -->
                 <div class="absolute top-4 right-4 flex gap-4">
-                    <button onClick="set()" id="settings"
+                    <button onClick="set()" id="settings" aria-label="settings"
                         class="rounded-full bg-white text-dark p-3 hover:bg-dark hover:text-light transition ease-in"><svg
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -297,14 +299,14 @@
 
                 <!-- Bottom Data -->
                 <div class="md:h-56 h-60 md:pt-[calc(100vh-224px)] pt-[calc(100vh-350px)]">
-                    <div class="p-6 pb-10 bg-dark md:rounded-t-none rounded-t-xl">
-                        <h2 id="condition" class="md:text-3xl text-xl">Sunny</h2>
-                        <h2 id="temp" class="md:text-8xl text-6xl font-bold">32<span id="unit"
+                    <div class="p-6 pb-10 md:bg-transparent bg-dark md:rounded-t-none rounded-t-xl">
+                        <h3 id="condition" class="md:text-3xl text-xl">Sunny</h3>
+                        <h3 id="temp" class="md:text-8xl text-6xl font-bold">32<span id="unit"
                                 class="font-sans font-bold">&#8451
-                                &#8457</span></h2>
+                                &#8457</span></h3>
                         <div class="h-1 w-full bg-slate-50 my-4 opacity-40"></div>
-                        <div class="flex justify-between md:text-base text-sm">
-                            <span id="location">Perth | Australia</span>
+                        <div class="flex gap-3 justify-between md:text-base text-sm">
+                            <span class="flex-1" id="location">Perth | Australia</span>
                             <span id="time">31 January 2022 | 09:30 PM</span>
                         </div>
                     </div>
@@ -318,6 +320,7 @@
     <script src="js/weather.js"></script>
     <script>
         var loading_screen = pleaseWait({
+            logo: "img/cloudy.png",
             backgroundColor: '#1abc9c',
             loadingHtml: '<div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>'
         });

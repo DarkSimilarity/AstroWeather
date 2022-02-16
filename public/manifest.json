@@ -1,0 +1,20 @@
+{
+    "short_name": "Weather",
+    "name": "AstroWeather",
+    "icons": [
+      {
+        "src": "/img/cloudy.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/img/cloudy.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "start_url": "/index",
+    "display": "browser",
+    "description": "Weather forecast information",
+    "prefer_related_applications": false
+  }
