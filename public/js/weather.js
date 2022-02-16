@@ -254,7 +254,7 @@ async function fetchWeather() {
     time.innerText = data.location.localtime
 
     // bring bottom layer back
-    major.classList.replace('hidden', 'block')
+    major.classList.replace('invisible', 'visible')
 
 
     // Weather Codes

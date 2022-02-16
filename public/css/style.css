@@ -742,6 +742,14 @@ body.pg-loaded>.inner {
   display: none
 }
 
+.visible{
+  visibility: visible;
+}
+
+.invisible{
+  visibility: hidden;
+}
+
 .absolute{
   position: absolute;
 }
