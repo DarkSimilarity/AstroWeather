@@ -9,6 +9,7 @@
     <link rel="icon" href="img/cloudy.png" type="image/png">
     <link rel="apple-touch-icon" href="img/cloudy.png">
     <link rel="preload" href="img/Settings.webp" as="image">
+    <link rel="preload" href="js/please-wait.min.js" as="script">
     <title>AstroWeather</title>
     <link rel="stylesheet" href="css/please-wait.css">
     <link rel="stylesheet" href="css/style.css">
@@ -313,8 +314,8 @@
         </div>
     </div>
 
-    <script src="js/anime.min.js"></script>
     <script src="js/please-wait.min.js"></script>
+    <script src="js/anime.min.js"></script>
     <script src="js/weather.js"></script>
     <script>
         var loading_screen = pleaseWait({
@@ -323,7 +324,7 @@
             loadingHtml: '<div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>'
         });
 
-        setTimeout(loading_screen.finish(), 2000)
+        setTimeout(loading_screen.finish(), 1500)
 
         //fetchWeather()
     </script>
