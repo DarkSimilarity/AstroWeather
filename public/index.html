@@ -71,6 +71,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="md:flex gap-4 mb-6 md:text-base text-sm font-bold pr-5">
+                    <p>This personal project is still getting updated with new features. Have any questions? Contact <a class="hover:text-violet-400 transition ease-in" href="https://darksimilarity.netlify.app/" target="_blank">DarkSimilarity</a></p>
+                </div>
                 <div class="flex justify-center">
                     <div>
                         <button onClick="fetchWeather()" aria-label="Continue"
@@ -86,10 +89,10 @@
             <!-- Sidebar -->
             <div
                 class="bg-white md:w-96 w-screen min-h-screen absolute right-0 top-0 z-[1] shadow-xl md:mt-0 mt-[calc(100vh-160px)] md:rounded-t-none rounded-t-xl">
-                <div class="bg-dark h-20 w-full text-center text-light flex md:block hidden">
+                <div class="bg-dark h-28 w-full text-center text-light md:flex md:block hidden">
                     <div class="m-auto">
                         <h1 class="font-bold text-2xl">AstroWeather</h1>
-                        <p>Made by DarkSimilarity</p>
+                        <a class="hover:text-violet-400 transition ease-in" href="https://darksimilarity.netlify.app/" target="_blank">Made by DarkSimilarity</a>
                     </div>
                 </div>
                 <div class="p-4">
@@ -275,6 +278,12 @@
                             </div>
                         </div>
                     </div>
+                    <a href="https://darksimilarity.netlify.app/" target="_blank">
+                        <div
+                            class="md:hidden bg-gradient-to-tr to-[#232526] from-[#414345] w-full rounded-xl p-4 text-white">
+                            <p class="font-bold text-base cursor-pointer">Made by DarkSimilarity</p>
+                        </div>
+                    </a>
                 </div>
             </div>
 
@@ -296,9 +305,9 @@
                 </div>
 
                 <!-- Bottom Data -->
-                <div class="md:h-56 h-60 md:pt-[calc(100vh-224px)] pt-[calc(100vh-350px)]">
-                    <div class="p-6 pb-10 md:bg-transparent bg-dark md:rounded-t-none rounded-t-xl">
-                        <div class="max-w-lg">
+                <div class="h-60 pt-[calc(100vh-288px)]">
+                    <div class="md:p-12 p-6 pb-10 md:bg-transparent bg-dark md:rounded-t-none rounded-t-xl">
+                        <div>
                             <p id="condition" class="md:text-3xl text-xl">Sunny</p>
                             <p id="temp" class="md:text-8xl text-6xl font-bold">32<span id="unit"
                                     class="font-sans font-bold">&#8451
@@ -320,8 +329,8 @@
     <script src="js/weather.js"></script>
     <script>
         var loading_screen = pleaseWait({
-            logo: "img/cloudy.png", 
-            backgroundColor: '#1abc9c', 
+            logo: "img/cloudy.png",
+            backgroundColor: '#1abc9c',
             loadingHtml: '<div class="spinner"><div class="double-bounce1"></div><div class="double-bounce2"></div></div>'
         });
 
