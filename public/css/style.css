@@ -878,6 +878,10 @@ body.pg-loaded>.inner {
   height: 15rem;
 }
 
+.h-72{
+  height: 18rem;
+}
+
 .min-h-screen{
   min-height: 100vh;
 }
@@ -1030,6 +1034,11 @@ body.pg-loaded>.inner {
 .bg-slate-50{
   --tw-bg-opacity: 1;
   background-color: rgb(248 250 252 / var(--tw-bg-opacity));
+}
+
+.bg-neutral-500{
+  --tw-bg-opacity: 1;
+  background-color: rgb(115 115 115 / var(--tw-bg-opacity));
 }
 
 .bg-settings{
@@ -1220,6 +1229,10 @@ body.pg-loaded>.inner {
 
 .pt-\[calc\(100vh-288px\)\]{
   padding-top: calc(100vh - 288px);
+}
+
+.pt-\[calc\(100vh-340px\)\]{
+  padding-top: calc(100vh - 340px);
 }
 
 .text-center{
@@ -1472,6 +1485,10 @@ body.pg-loaded>.inner {
 
   .md\:pt-\[calc\(100vh-224px\)\]{
     padding-top: calc(100vh - 224px);
+  }
+
+  .md\:pt-\[calc\(100vh-288px\)\]{
+    padding-top: calc(100vh - 288px);
   }
 
   .md\:text-2xl{
